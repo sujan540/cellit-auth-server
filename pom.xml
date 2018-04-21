@@ -4,12 +4,12 @@
 	<modelVersion>4.0.0</modelVersion>
 
 	<groupId>com.cellit</groupId>
-	<artifactId>security</artifactId>
-	<version>0.0.1-SNAPSHOT</version>
+	<artifactId>cellit-auth-server</artifactId>
+	<version>2018.1.0</version>
 	<packaging>jar</packaging>
 
-	<name>spring-security-auth-server</name>
-	<description>Demo project for Spring Boot</description>
+	<name>Cellit Authorization Server</name>
+	<description/>
 
 	<parent>
 		<groupId>org.springframework.boot</groupId>
@@ -23,6 +23,17 @@
 		<project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
 		<java.version>1.8</java.version>
 		<spring-cloud.version>Dalston.SR3</spring-cloud.version>
+
+		<build.cellit.jdbc.drive>com.mysql.jdbc.Driver</build.cellit.jdbc.drive>
+		<build.cellit.jdbc.url>jdbc:mysql://localhost:3306/cellit?createDatabaseIfNotExist=true</build.cellit.jdbc.url>
+		<build.cellit.jdbc.username>root</build.cellit.jdbc.username>
+		<build.cellit.jdbc.password>password</build.cellit.jdbc.password>
+
+		<liquibase.profile>master</liquibase.profile>
+
+		<liquibase.cellit.changeLogFile>
+			/src/main/resources/liquibase/cellit-changeset-${liquibase.profile}.xml
+		</liquibase.cellit.changeLogFile>
 	</properties>
 
 	<dependencies>
@@ -81,6 +92,18 @@
 			<plugin>
 				<groupId>org.springframework.boot</groupId>
 				<artifactId>spring-boot-maven-plugin</artifactId>
+			</plugin>
+			<plugin>
+				<groupId>org.liquibase</groupId>
+				<artifactId>liquibase-maven-plugin</artifactId>
+				<version>3.6.1</version>
+				<configuration>
+					<changeLogFile>${liquibase.cellit.changeLogFile}</changeLogFile>
+					<driver>${build.cellit.jdbc.drive}</driver>
+					<url>${build.cellit.jdbc.url}</url>
+					<username>${build.cellit.jdbc.username}</username>
+					<password>${build.cellit.jdbc.password}</password>
+				</configuration>
 			</plugin>
 		</plugins>
 	</build>

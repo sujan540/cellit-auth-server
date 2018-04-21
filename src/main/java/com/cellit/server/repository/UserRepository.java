@@ -12,5 +12,5 @@ import com.cellit.server.model.User;
  */
 public interface UserRepository extends JpaRepository <User, Integer>{
 
-    Optional<User> findByFirstName(String username);
+    Optional<User> findByUsername(String username);
 }

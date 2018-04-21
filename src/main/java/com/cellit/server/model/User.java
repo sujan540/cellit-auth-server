@@ -28,11 +28,14 @@ import lombok.NoArgsConstructor;
 public class User {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    @Column(name = "user_id")
-    private int id;
+    @Column(name = "id")
+    private Long id;
 
     @Column(name = "email")
     private String email;
+
+    @Column(name = "username")
+    private String username;
 
     @Column(name = "last_name")
     private String lastName;
@@ -53,6 +56,7 @@ public class User {
     private Set<Role> roles;
 
     public User(final User user) {
+        this.username = user.username;
         this.active = user.active;
         this.email = user.email;
         this.firstName = user.firstName;
