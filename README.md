@@ -18,3 +18,10 @@ mvn clean liquibase:update package
 ```
 mvn package spring-boot:run
 ```
+
+
+## Other Sources
+```
+https://spring.io/guides/tutorials/spring-boot-oauth2/
+https://github.com/spring-projects/spring-boot/wiki/Spring-Boot-2.0-Release-Notes
+```
